@@ -1,0 +1,52 @@
+MIT License
+
+Copyright (c) 2015-2026 Contributors to this repository's custom and documentation content
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Scope note (third-party code is NOT relicensed)
+
+This repository mixes in-house/custom content with third-party deliveries that
+keep their own licenses. The MIT license above applies to custom code, scripts,
+and documentation authored for this repository (including the `docs/` site
+sources and hand-written module pages).
+
+The following are NOT covered by the MIT license and remain under their
+original terms (see the original files and the docs site for details):
+
+- Vector Software Integration Package (SIP) files under `BSW/`, GENy output
+  under `Demo/DemoFbl/Appl/Gendata`, `Generators/`, and `Makesupport/`
+  (Vector Informatik; modification without written permission voids warranty
+  per the SIP ReadMe; license serial CBD1400501).
+- Texas Instruments F021 Flash API under
+  `BSW/Flash/Build/F021_Flash_API_v02.00.01` (TI license agreement included
+  in that directory).
+- Vendored GNU/Cygwin tools under `Makesupport/cmd` (GPL/Cygwin terms in
+  that directory).
+- Tool binaries such as `FlashTool/vFlashTemplateInstaller*` and
+  `Misc/HexView/hexview.exe` plus DLLs (vendor terms; HexView disclaimer in
+  `Misc/HexView/disclaimer.txt`).
+- Original PDFs/HTML under `Doc/` and `Misc/` (Vector/TI copyright; converted
+  Markdown in `docs/` is provided for search/readability, the originals
+  remain authoritative).
+
+Demo keys under `Misc/DemoKey_2048` are example-only and must not be used in
+production.

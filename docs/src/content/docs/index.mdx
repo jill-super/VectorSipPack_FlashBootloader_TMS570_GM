@@ -1,0 +1,92 @@
+---
+title: "TMS570 GM Flash Bootloader"
+description: "AUTOSAR-based flash bootloader for TI TMS570 (GM SLP5) — Vector SIP plus custom integration."
+sidebar:
+  label: "Home"
+  order: 1
+nav_order: 1
+---
+
+![Language: C](https://img.shields.io/badge/language-C-blue)
+![Platform: TMS570](https://img.shields.io/badge/platform-TI_TMS570-orange)
+![OEM: GM SLP5](https://img.shields.io/badge/OEM-GM_SLP5-red)
+![Standard: AUTOSAR](https://img.shields.io/badge/standard-AUTOSAR_Classic-green)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+![Docs: Astro Starlight](https://img.shields.io/badge/docs-Astro_Starlight-purple)
+
+# TMS570 GM Flash Bootloader
+
+An AUTOSAR-based **flash bootloader** for the Texas Instruments **TMS570** (GM SLP5) — diagnostics over CAN (UDS / ISO-15765), secure download containers, and flash programming.
+
+> **Vector vs. custom — read this first.**
+> Most of `BSW/` is **Vector-provided** (MICROSAR-style SIP, GENy-generated). Board/application glue, demo apps, header/container scripts and tool configs are **custom**. Every module page carries an origin badge so you never mix the two. Do not modify Vector files without written permission (warranty note in the SIP ReadMe).
+
+## Start here
+
+- [AUTOSAR layers](/layers/) — where each directory lives and why.
+- [Modules](/modules/) — purpose, key files, public API, dependencies per module.
+- [Vector SIP](/sip/) — what the Software Integration Package contains, versions, delivery docs.
+- [General documents](/general/) — converted manuals, delivery/test reports, TI Flash API docs.
+
+## At a glance
+
+| Item | Value (from repo) |
+|---|---|
+| MCU | TI TMS5700714PGEQQ1 (Cortex-R4, F021 Flash API) |
+| OEM / package | GM SLP5 (`FBL Gm SLP5 D00`) |
+| License serial | CBD1400501, SIP 05.03.02, delivery 2014-12-24 |
+| Toolchain | TI Code Composer Studio 4.9.5, GNU Make 3.79.1 (Windows), GENy 01.04.0043 |
+| Transport / diagnostics | CAN, ISO-TP, UDS-style GM diagnostics |
+| Security | HIS Security Module (CRC + verification classes, demo RSA-2048 keys only) |
+| Build entry points | `BSW/Flash/Build/m.bat`, `Demo/DemoFbl/Appl/m.bat`, `Demo/DemoAppl/Appl/m.bat` |
+
+## Repository map
+
+```text
+BSW/            Basic Software — mostly Vector-provided
+  FBL/          Bootloader core (CDD-like): main, diag, TP, memory, CAN/HW/WD
+  SecMod/       HIS Security Module (Services)
+  WrapNv/       NV-Wrapper (Services / NvM-like)
+  Eep/          EEPROM abstraction (ECU Abstraction)
+  Flash/        Flash driver + TI F021 API (MCAL)
+  _Common/      Shared platform types v_def.h (MCAL/base)
+Demo/           In-house integration examples (Custom, some Vector templates)
+  DemoFbl/      Bootloader integration + GENy Gendata (customised)
+  DemoAppl/     Demo application + calibration containers (custom)
+Generators/     GENy / DaVinci plugins (Vector tooling)
+Makesupport/    GNU Make infrastructure (Vector)
+Misc/           Header generator, HexView tool, demo keys (mixed)
+Doc/            Original PDFs / HTML (sources for converted pages)
+FlashTool/      vFlash template installer (Vector tooling)
+docs/           This site (Astro Starlight project)
+```
+
+## How to use this site
+
+- Module pages are **factual and code-based**: purpose, origin badge, key files, public API, usage snippet, dependencies, and links to converted references.
+- Converted pages (labelled “(converted)”) are **text extractions** of the original PDFs/HTML/TXT. Layout, figures and exact tables live in the originals under `Doc/`, `Misc/`, and `BSW/Flash/Build/`.
+- No user/repo names appear in links or config, so **forks publish unchanged** — enable Pages from Actions and use your fork’s Pages URL.
+
+## Build in 60 seconds
+
+```bat
+REM Flash driver (Windows, CCS 4.9.5 on PATH)
+cd BSW\Flash\Build
+m.bat
+
+REM Bootloader integration example
+cd ..\..\..\Demo\DemoFbl\Appl
+m.bat
+
+REM Demo application
+cd ..\..\..\Demo\DemoAppl\Appl
+m.bat
+```
+
+See [Build & integration](/layers/tools/) and each module’s “Build” section for details.
+
+## License
+
+Project documentation and custom glue use the **MIT License** — see `LICENSE` at the repo root. Vector SIP files, TI F021 API and bundled tools keep **their own licenses** (see the SIP addendum, TI license agreement, and tool disclaimers). The MIT license does not relicense third-party code.
+
+[Back to top](#tms570-gm-flash-bootloader)
